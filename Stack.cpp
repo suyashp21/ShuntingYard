@@ -7,7 +7,7 @@ Stack::Stack() {
   head = NULL;
 }
 
-void Stack::push(int m)
+void Stack::push(char m)
 {
   StackNode* n = new StackNode();
   n->next = head;
@@ -15,26 +15,26 @@ void Stack::push(int m)
   head = n;
 }
 
-int Stack::peek()
+char Stack::peek()
 {
   if (head != NULL) {
     return head->data;
   }
   else {
-    return -1;
+    return ' ';
   }
 }
 
-int Stack::pop()
+char Stack::pop()
 {
   if (head != NULL) {
     StackNode* n = head;
-    int k = n->data;
+    char k = n->data;
     head = n->next;
     delete n;
     return k;
   }
   else {
-    return -1;
+    return ' ';
   }
 }

@@ -7,7 +7,7 @@ Queue::Queue() {
   head = NULL;
 }
 
-void Queue::enqueue(int m)
+void Queue::enqueue(char m)
 {
   QueueNode* n = new QueueNode();
   n->data = m;
@@ -23,13 +23,13 @@ void Queue::enqueue(int m)
   }
 }
 
-int Queue::dequeue() {
+char Queue::dequeue() {
   if (head == NULL) {
-    return -1;
+    return ' ';
   }
   else {
     QueueNode* n = head;
-    int k = n->data;
+    char k = n->data;
     head = n->next;
     delete n;
     return k;

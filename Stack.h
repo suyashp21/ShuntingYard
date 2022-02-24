@@ -5,7 +5,7 @@
 
 struct StackNode
 {
-  int data;
+  char data;
   StackNode* next;
 };
 
@@ -13,9 +13,9 @@ class Stack
 {
  public:
   Stack();
-  void push(int m);
-  int peek();
-  int pop();
+  void push(char m);
+  char peek();
+  char pop();
  private:
   StackNode* head;
 };

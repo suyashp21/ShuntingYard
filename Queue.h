@@ -5,7 +5,7 @@
 
 struct QueueNode
 {
-  int data;
+  char data;
   QueueNode* next;
 };
 
@@ -13,8 +13,8 @@ class Queue
 {
  public:
   Queue();
-  void enqueue(int m);
-  int dequeue();
+  void enqueue(char m);
+  char dequeue();
  private:
   QueueNode* head;
 };
