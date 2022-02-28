@@ -2,10 +2,11 @@
 
 #ifndef QUEUE_H
 #define QUEUE_H
+#include "Tree.h"
 
 struct QueueNode
 {
-  char data;
+  Node* data;
   QueueNode* next;
 };
 
@@ -13,9 +14,8 @@ class Queue
 {
  public:
   Queue();
-  void enqueue(char m);
-  char dequeue();
- private:
+  void enqueue(Node* m);
+  Node* dequeue();
   QueueNode* head;
 };
 

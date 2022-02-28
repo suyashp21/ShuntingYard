@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Queue.h"
+#include "Tree.h"
 
 using namespace std;
 
@@ -7,7 +8,7 @@ Queue::Queue() {
   head = NULL;
 }
 
-void Queue::enqueue(char m)
+void Queue::enqueue(Node* m)
 {
   QueueNode* n = new QueueNode();
   n->data = m;
@@ -23,15 +24,10 @@ void Queue::enqueue(char m)
   }
 }
 
-char Queue::dequeue() {
-  if (head == NULL) {
-    return ' ';
-  }
-  else {
+Node* Queue::dequeue() {
     QueueNode* n = head;
-    char k = n->data;
+    Node* k = n->data;
     head = n->next;
     delete n;
     return k;
-  }
 }

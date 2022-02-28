@@ -2,10 +2,11 @@
 
 #ifndef STACK_H
 #define STACK_H
+#include "Tree.h"
 
 struct StackNode
 {
-  char data;
+  Node* data;
   StackNode* next;
 };
 
@@ -13,10 +14,9 @@ class Stack
 {
  public:
   Stack();
-  void push(char m);
-  char peek();
-  char pop();
- private:
+  void push(Node* m);
+  Node* peek();
+  Node* pop();
   StackNode* head;
 };
 

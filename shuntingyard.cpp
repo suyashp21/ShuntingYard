@@ -1,18 +1,13 @@
 #include <iostream>
 #include "Stack.h"
 #include "Queue.h"
+#include "Tree.h"
 #include <cstring>
 #include <cctype>
 
 using namespace std;
 
 int prec(char symb);
-
-struct Node {
-  int data;
-  Node* left;
-  Node* right;
-};
 
 int main() {
   char expression[100];
@@ -21,35 +16,49 @@ int main() {
   Queue* output = new Queue();
   Stack* opstack = new Stack();
   // cout << strlen(expression);
+
+  // translate to postfix notation using shunting yard
+  
   for (int i=0; i<strlen(expression); i++) {
+    Node* n = new Node();
+    n->data = expression[i];
     if (expression[i] == ' ') {
       continue;
     }
     if (expression[i] >= 48 && expression[i] <= 57) {
-      output->enqueue(expression[i]);
+      output->enqueue(n);
     }
     else if (expression[i] == '(' or expression[i] == '^') {
-      opstack->push(expression[i]);
+      opstack->push(n);
     }
     else if (expression[i] == ')') {
-      while (opstack->peek() != '(') {
+      while (opstack->peek()->data != '(') {
 	output->enqueue(opstack->pop());
       }
       opstack->pop();
     }
     else if (expression[i] == '+' or expression[i] == '-' or expression[i] == '*' or expression[i] == '/') {
-      while (opstack->peek() != ' ' and prec(expression[i]) <= prec(opstack->peek())) {
+      while (opstack->head != NULL and prec(expression[i]) <= prec(opstack->peek()->data)) {
 	output->enqueue(opstack->pop());
       }
-      opstack->push(expression[i]);
+      opstack->push(n);
     }
   }
-  while (opstack->peek() != ' ') {
+
+  // queue any remaining operands on stack
+  while (opstack->head != NULL) {
     output->enqueue(opstack->pop());
   }
-  for (int i=0; i<20; i++) {
-    cout << output->dequeue();
+
+  while (output->head != NULL) {
+    Node* k = output->dequeue();
+    cout << k->data;
   }
+
+  // TreeStackNode* head = NULL;
+  Node* n = new Node();
+  n->data = 3;
+  // push(n, head);
   return 0;
 }
 
@@ -67,3 +76,11 @@ int prec(char symb) {
     return 0;
   }
 }
+
+/*
+Node* newNode(char symb) {
+  Node* n = new Node();
+  n->data = symb;
+  return n;
+}
+*/

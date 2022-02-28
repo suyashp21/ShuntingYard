@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Stack.h"
+#include "Tree.h"
 
 using namespace std;
 
@@ -7,7 +8,7 @@ Stack::Stack() {
   head = NULL;
 }
 
-void Stack::push(char m)
+void Stack::push(Node* m)
 {
   StackNode* n = new StackNode();
   n->next = head;
@@ -15,26 +16,16 @@ void Stack::push(char m)
   head = n;
 }
 
-char Stack::peek()
+Node* Stack::peek()
 {
-  if (head != NULL) {
     return head->data;
-  }
-  else {
-    return ' ';
-  }
 }
 
-char Stack::pop()
+Node* Stack::pop()
 {
-  if (head != NULL) {
     StackNode* n = head;
-    char k = n->data;
+    Node* k = n->data;
     head = n->next;
     delete n;
     return k;
-  }
-  else {
-    return ' ';
-  }
 }
