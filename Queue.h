@@ -14,8 +14,8 @@ class Queue
 {
  public:
   Queue();
-  void enqueue(Node* m);
-  Node* dequeue();
+  void enqueue(Node* m); // add a new Node at the end of the queue
+  Node* dequeue(); // remove and return a Node from the front
   QueueNode* head;
 };
 
